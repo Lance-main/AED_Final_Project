@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package aed_final_project;
+package app;
 
 /**
  *
  * @author lance
  */
-public class AED_Final_Project {
+public class App {
 
     /**
      * @param args the command line arguments
