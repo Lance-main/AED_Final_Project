@@ -1,19 +1,39 @@
 package app;
-
-import app.LoginDialog;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class FrameWindow extends JFrame implements Runnable{
     public static JTextArea messageArea;
+    public static final String databaseUrl = "jdbc:mysql://localhost:3306/appdb";
     public FrameWindow(String title) throws HeadlessException {
         super(title);
+        
+        String username = "root";
+        String password = "toor";
+        
+        try{
+            Connection connection = DriverManager.getConnection(databaseUrl,username,password);
+            String sql = "SELECT * FROM ENTERPRISE";
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                System.out.println(result.getString(1));
+                System.out.println(result.getString(2));
+            }
+            
+        }catch(SQLException e){
+            System.out.println("Error");
+            e.printStackTrace();
+        }
+        
+    
         setBounds(300, 200, 800, 600);
         Container controlHost = getContentPane();
         controlHost.setLayout(null);
-
+        
 
         //Message Area
         messageArea = new JTextArea();
