@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 public class HomeScene_Hub extends JPanel implements Scenes{
     
     private AppWindow root;
-    HomeScene_Hub(AppWindow root)
+    HomeScene_Hub(AppWindow root,AppStateManager aps)
     {
           this.root=root;
           ArrayList<Component> ComponentList = new ArrayList();
@@ -36,9 +36,9 @@ public class HomeScene_Hub extends JPanel implements Scenes{
     }
     
     @Override
-    public void init()
+    public void init(AppStateManager aps)
     {
-         root.setContentPane(this);
+         root.setContentPane(new HomeScene_Hub(root,aps));
          update(root);
     }
 }
