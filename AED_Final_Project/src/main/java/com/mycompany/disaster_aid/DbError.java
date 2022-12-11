@@ -33,7 +33,7 @@ public class DbError extends JPanel implements Scenes {
     }
     
     @Override
-    public void init()
+    public void init(AppStateManager aps)
     {
          root.setContentPane(this);
          update(root);

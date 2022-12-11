@@ -6,7 +6,7 @@ package com.mycompany.disaster_aid;
 import java.awt.Color;
 /**
  *
- * @author EpiCon
+ * @author 
  */
 public class Config {
     public static final int Width = 1100;

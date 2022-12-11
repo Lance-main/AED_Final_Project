@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class AppStateManager {
     
     DbManager Db ;
+    public static String SessionUser_;
 
     private int currentState=0;
 
@@ -22,6 +23,7 @@ public class AppStateManager {
      AppStateManager(AppWindow ap)
     {
         Db = new DbManager();
+        
           if(Db.CheckConnection()  == true)
         {
             System.out.println("Connection Succesfull");
@@ -37,13 +39,13 @@ public class AppStateManager {
         AppStateList.add(new DbError(ap));
         AppStateList.add(new LoginScene(ap));
         AppStateList.add(new Register(ap));
-        AppStateList.add(new HomeScene_User(ap));
-        AppStateList.add(new HomeScene_Hub(ap));
-        AppStateList.add(new HomeScene_DeliverAgent(ap));
-        AppStateList.add(new HomeScene_EnterPrise(ap));
-        AppStateList.add(new HomeScene_Organization(ap));
-        AppStateList.add(new HomeScene_Logger(ap));
-        AppStateList.add(new HomeScene_Admin(ap));
+        AppStateList.add(new HomeScene_User(ap,this));
+        AppStateList.add(new HomeScene_Hub(ap,this));
+        AppStateList.add(new HomeScene_DeliverAgent(ap,this));
+        AppStateList.add(new HomeScene_EnterPrise(ap,this));
+        AppStateList.add(new HomeScene_Organization(ap,this));
+        AppStateList.add(new HomeScene_Logger(ap,this));
+        AppStateList.add(new HomeScene_Admin(ap,this));
 
         SwitchState(currentState);
     }
@@ -52,7 +54,7 @@ public class AppStateManager {
       public void SwitchState(int state){
         currentState = state;
         System.out.println("state "+state);
-        AppStateList.get(currentState).init();
+        AppStateList.get(currentState).init(this);
         
 
     }
