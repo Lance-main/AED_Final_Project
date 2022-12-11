@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author 
+ * @Ojasvi
  */
 public class HomeScene_Organization extends JPanel implements Scenes{
          private AppWindow root;
