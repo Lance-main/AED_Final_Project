@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class HomeScene_DeliverAgent extends JPanel implements Scenes{
      private AppWindow root;
-    HomeScene_DeliverAgent(AppWindow root)
+    HomeScene_DeliverAgent(AppWindow root,AppStateManager aps)
     {
           this.root=root;
           ArrayList<Component> ComponentList = new ArrayList();
@@ -35,9 +35,9 @@ public class HomeScene_DeliverAgent extends JPanel implements Scenes{
     }
     
     @Override
-    public void init()
+    public void init(AppStateManager aps)
     {
-         root.setContentPane(this);
+         root.setContentPane(new HomeScene_DeliverAgent(root,aps));
          update(root);
     }
 }
