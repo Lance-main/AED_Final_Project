@@ -15,9 +15,12 @@ import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 /**
  *
- * @Ojasvi
+ * @author 
  */
 public interface Scenes {
     
@@ -31,6 +34,23 @@ public interface Scenes {
     {
         
         JButton jb = new JButton();
+       
+
+        jb.setFont(new Font("Arial",Font.PLAIN,25));
+        jb.setText(txt);
+        jb.setPreferredSize(new Dimension(width,height));
+        jb.setFocusable(false);
+        jb.setOpaque(true);
+        jb.setBackground(color);
+
+        return jb;
+    }
+    default JButton addButton(String txt,int width,int height,Color color,ActionListener Listener)
+    {
+        
+        JButton jb = new JButton();
+       
+        jb.addActionListener(Listener);
         jb.setFont(new Font("Arial",Font.PLAIN,25));
         jb.setText(txt);
         jb.setPreferredSize(new Dimension(width,height));
@@ -49,10 +69,20 @@ public interface Scenes {
         tf.setHorizontalAlignment(JTextField.CENTER);
         return tf;
     }
+     default JPasswordField addPassfield(int width,int height)
+    {
+        JPasswordField pf = new JPasswordField();
+        pf.setPreferredSize(new Dimension(width,height));
+        pf.setFont(new Font("Arial",Font.PLAIN,25));
+
+        pf.setHorizontalAlignment(JTextField.CENTER);
+        return pf;
+    }
     default JPanel addjpanel(Color color,int align,int vgap,int hgap,int width,int height,ArrayList<Component> componentList)
     {
         JPanel jp = new JPanel(new FlowLayout(align,hgap,vgap));
         jp.setBackground(color);
+        
         for(Component c : componentList)
         {
                 jp.add(c);
@@ -61,4 +91,16 @@ public interface Scenes {
         jp.setPreferredSize(new Dimension(width,height));
         return jp;
     }
+    default JLabel addjlabel(String txt,int fontSize,Color fgColor)
+    {
+        JLabel lb = new JLabel();
+        lb.setText(txt);
+        lb.setFont(new Font("Arial",Font.BOLD,fontSize));
+        lb.setForeground(fgColor);
+          lb.setOpaque(true);
+        
+        return lb;
+    }
+    void switchScene(int a);
+    void init();
 }
