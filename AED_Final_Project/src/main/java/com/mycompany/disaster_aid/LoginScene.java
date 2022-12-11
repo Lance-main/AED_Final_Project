@@ -12,20 +12,22 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.JLabel;
 /**
  *
- * @author 
+ * @Ojasvi
  */
 public class LoginScene extends JPanel implements Scenes{
     
     private AppWindow root;
     private JTextField uname ;
     private JPasswordField upass ;
+    JLabel Error_Lab=addjlabel("         ",20,Color.RED);
     LoginScene(AppWindow root)
     {
         this.root=root;
 
-        this.setLayout(new FlowLayout(FlowLayout.LEADING,20,80));
+        this.setLayout(new FlowLayout(FlowLayout.CENTER,20,40));
         ArrayList<Component> ComponentList = new ArrayList();
         ArrayList<Component> ComponentList2 = new ArrayList();
 
@@ -40,15 +42,16 @@ public class LoginScene extends JPanel implements Scenes{
         ComponentList2.add( addButton("Login",300,60,new Color(0xF0978B)));
           
         ComponentList2.add(addButton("Register",300,60,new Color(0x8BB2F0),gotoRegister()));
+        ComponentList.add(Error_Lab);
 
-        this.add(addjpanel(new Color(0x144A4B),FlowLayout.CENTER,100,20,350,500,ComponentList2));
+        this.add(addjpanel(new Color(0x144A4B),FlowLayout.CENTER,100,100,350,600,ComponentList2));
 
-        this.add(addjpanel(new Color(0x0B4850),FlowLayout.CENTER,75,20,650,500,ComponentList));
+        this.add(addjpanel(new Color(0x0B4850),FlowLayout.CENTER,75,150,650,600,ComponentList));
 
         this.setBackground(Config.bgColor);
         
         
-        ;
+        
     }
     public ActionListener uLogin()
     {
@@ -60,9 +63,29 @@ public class LoginScene extends JPanel implements Scenes{
                             
                           String user_n = uname.getText();
                           String Uuser_p = String.valueOf(upass.getPassword());
+                            
+                          int rs= root.appManager.Db.Authenticate(user_n,Uuser_p);
                           
-                             switchScene(Config.Home_Scene_User);
+                        if(rs == 1)
+                        {
+                            Error_Lab.setText("Invalid User Name");
+                            return;
                         }
+                        if(rs == 2)
+                        {
+                            Error_Lab.setText("Password Does Not Match UserName");
+                            return;
+                        }
+                        if(rs == 0)
+                        {
+                            uname.setText("");
+                            upass.setText("");
+                            root.appManager.SessionUser_ =user_n;
+                            switchScene(Config.Home_Scene_User);
+
+                        }
+                             
+                 }
                 }
             );
     }
@@ -84,7 +107,7 @@ public class LoginScene extends JPanel implements Scenes{
         root.appManager.SwitchState(a);
     }
     @Override
-    public void init()
+    public void init(AppStateManager aps)
     {
          root.setContentPane(this);
          update(root);
