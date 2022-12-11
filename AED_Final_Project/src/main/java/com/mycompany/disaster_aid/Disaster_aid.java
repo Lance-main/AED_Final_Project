@@ -6,11 +6,14 @@ package com.mycompany.disaster_aid;
 
 /**
  *
- * @lance
+ * @rushi
  */
 public class Disaster_aid {
+    
+        public static AppWindow App ;
+
 
     public static void main(String[] args) {
-        new AppWindow("Disaster Aid",900,720);
+        App = new AppWindow("Disaster Aid",Config.Width,Config.Height);
     }
 }
