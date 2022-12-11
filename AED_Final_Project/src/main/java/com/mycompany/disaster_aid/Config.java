@@ -4,13 +4,14 @@
  */
 package com.mycompany.disaster_aid;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 /**
  *
  * @author 
  */
 public class Config {
-    public static final int Width = 1100;
-    public static final int Height = 720;
+    
     public static final int NoDbConnection =0;
     public static final int LoginState =1;
     public static final int RegisterState = 2;
@@ -21,7 +22,12 @@ public class Config {
     public static final int Home_Scene_Organization = 7;
     public static final int Home_Scene_Logger = 8;
     public static final int Home_Scene_Admin = 9;
+    public static final int Home_Scene_GroundCentral = 10;
+    public static final Color warningColor=new Color(0xEA7364);
+    public static final Color bgColor = new Color(0x179FB0);
+       public static final Color selectColor = new Color(0xEC7F72);
 
-    public static final Color bgColor = new Color(0x30144B);
+
+  
     
 }

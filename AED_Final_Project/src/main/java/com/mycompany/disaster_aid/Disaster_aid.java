@@ -6,7 +6,7 @@ package com.mycompany.disaster_aid;
 
 /**
  *
- * @rushi
+ * @author someone's name goes here~
  */
 public class Disaster_aid {
     
@@ -14,6 +14,6 @@ public class Disaster_aid {
 
 
     public static void main(String[] args) {
-        App = new AppWindow("Disaster Aid",Config.Width,Config.Height);
+        App = new AppWindow("Disaster Aid");
     }
 }

@@ -6,30 +6,27 @@ package com.mycompany.disaster_aid;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import java.util.Vector;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.table.*;
-import javax.swing.event.*;
-import java.util.EventObject;
-import java.awt.Dimension;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 
- * @author 
  */
 
-public class TrackItems extends JPanel implements Scenes{
+public class TrackItems_ground extends JPanel implements Scenes{
              private AppWindow root;
     JTextField tfitemName ;
     JTextField tfQty ;
@@ -45,7 +42,7 @@ public class TrackItems extends JPanel implements Scenes{
    Object[][] TableData = new Object[][]{};
 
     
-    TrackItems(AppWindow root,AppStateManager aps,String db)
+    TrackItems_ground(AppWindow root,AppStateManager aps,String db)
     {
         this.root=root;       
         this.aps=aps;
@@ -83,13 +80,13 @@ public class TrackItems extends JPanel implements Scenes{
         {
             jt.getColumnModel().getColumn(j).setCellRenderer(centerRenderer);
         }
-//        jt.getColumnModel().getColumn(0).setCellEditor(new DisableEditor());  //Set Table column Non editable
-//        jt.getColumnModel().getColumn(1).setCellEditor(new DisableEditor());  //Set Table column Non editable
-//        jt.getColumnModel().getColumn(2).setCellEditor(new DisableEditor());  //Set Table column Non editable
-//        jt.getColumnModel().getColumn(3).setCellEditor(new DisableEditor());  //Set Table column Non editable
-//        jt.getColumnModel().getColumn(4).setCellEditor(new DisableEditor());  //Set Table column Non editable
-//        jt.getColumnModel().getColumn(5).setCellEditor(new DisableEditor());  //Set Table column Non editable
-//        jt.getColumnModel().getColumn(6).setCellEditor(new DisableEditor());  //Set Table column Non editable
+        jt.getColumnModel().getColumn(0).setCellEditor(new DisableEditor());  //Set Table column Non editable
+        jt.getColumnModel().getColumn(1).setCellEditor(new DisableEditor());  //Set Table column Non editable
+        jt.getColumnModel().getColumn(2).setCellEditor(new DisableEditor());  //Set Table column Non editable
+        jt.getColumnModel().getColumn(3).setCellEditor(new DisableEditor());  //Set Table column Non editable
+        jt.getColumnModel().getColumn(4).setCellEditor(new DisableEditor());  //Set Table column Non editable
+        jt.getColumnModel().getColumn(5).setCellEditor(new DisableEditor());  //Set Table column Non editable
+        jt.getColumnModel().getColumn(6).setCellEditor(new DisableEditor());  //Set Table column Non editable
         
         ArrayList<Component> ComponentList2 = new ArrayList();
         jt.getTableHeader().setReorderingAllowed(false);
@@ -173,3 +170,5 @@ public class TrackItems extends JPanel implements Scenes{
          update(root);
     }
 }
+
+

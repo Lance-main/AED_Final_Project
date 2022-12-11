@@ -46,7 +46,7 @@ public class AppStateManager {
         AppStateList.add(new HomeScene_Organization(ap,this));
         AppStateList.add(new HomeScene_Logger(ap,this));
         AppStateList.add(new HomeScene_Admin(ap,this));
-
+        AppStateList.add(new HomeScene_GroundCenter(ap,this));
         SwitchState(currentState);
     }
      
@@ -55,7 +55,5 @@ public class AppStateManager {
         currentState = state;
         System.out.println("state "+state);
         AppStateList.get(currentState).init(this);
-        
-
     }
 }
