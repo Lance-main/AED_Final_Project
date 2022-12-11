@@ -9,6 +9,8 @@ import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -16,23 +18,65 @@ import java.awt.FlowLayout;
  */
 public class HomeScene_User extends JPanel implements Scenes{
     
-    
+    static AppStateManager AppState_M;
+
     private AppWindow root;
     private String user_name;
-    HomeScene_User(AppWindow root)
+    AppStateManager aps;
+    HomeScene_User(AppWindow root,AppStateManager aps)
     {
           this.root=root;
+         user_name = aps.SessionUser_;
+         this.aps=aps;
           ArrayList<Component> ComponentList = new ArrayList();
-          ComponentList.add(addjlabel("Welcome User "+user_name,40,new Color(0xcfa12)));
-
-          ComponentList.add(addButton("Send Order",300,60,new Color(0xcfa12)));
-          ComponentList.add(addButton("Track Order",300,60,new Color(0xcfa12)));
-          ComponentList.add(addButton("Log Out",300,60,new Color(0xcfa12)));
+          ComponentList.add(addjlabel("Welcome User "+user_name,40,new Color(0xdfa12)));
+          ComponentList.add(addButton("Send Order",300,60,new Color(0xcfa62),SendData()));
+          ComponentList.add(addButton("Track Order",300,60,new Color(0xcfa62),TrackOrder()));
+          ComponentList.add(addButton("Log Out",300,60,new Color(0xcfa62),logout()));
 
           this.setBackground(Config.bgColor);
           this.add(addjpanel(new Color(0xaaca),FlowLayout.CENTER,50,50,650,650,ComponentList));
     }
-
+    public ActionListener logout()
+    {
+     return (new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                            System.out.println("LogOut");
+                            aps.SessionUser_=null;    
+                            switchScene(Config.LoginState);
+                    }
+                }
+            );
+    }
+    public ActionListener TrackOrder()
+    {
+      return (new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                    
+                        root.setContentPane(   new TrackItems(root,aps));
+                        
+                    }
+                }
+            );
+            
+    }
+      public ActionListener SendData()
+    {
+        return (new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                    
+                        root.setContentPane(   new SendItems(root,aps));
+                        
+                    }
+                }
+            );
+    }
     @Override
     public void switchScene(int a)
     {
@@ -40,9 +84,10 @@ public class HomeScene_User extends JPanel implements Scenes{
     }
     
     @Override
-    public void init()
+    public void init(AppStateManager aps)
     {
-         root.setContentPane(this);
+         root.setContentPane(new HomeScene_User(root,aps));
          update(root);
+      
     }
 }
