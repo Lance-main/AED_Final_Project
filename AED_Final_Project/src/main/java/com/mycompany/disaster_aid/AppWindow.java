@@ -9,19 +9,21 @@ import javax.swing.JFrame;
  * @author 
  */
 public class AppWindow extends JFrame{
-    
+    public AppStateManager appManager;
     AppWindow(String appName,int width,int height)
     {
         super(appName);
         System.out.println("App Started");
+        appManager = new AppStateManager(this);
+        
         this.setSize(width,height);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setContentPane(new LoginScene(this));
+      
         this.setVisible(true);
-
-
+        
+        
     }
   
 }
