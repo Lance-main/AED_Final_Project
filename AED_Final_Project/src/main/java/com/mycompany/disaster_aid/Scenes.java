@@ -17,10 +17,12 @@ import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 /**
  *
- * @author 
+ * @Ojasvi
  */
 public interface Scenes {
     
@@ -74,7 +76,6 @@ public interface Scenes {
         JPasswordField pf = new JPasswordField();
         pf.setPreferredSize(new Dimension(width,height));
         pf.setFont(new Font("Arial",Font.PLAIN,25));
-
         pf.setHorizontalAlignment(JTextField.CENTER);
         return pf;
     }
@@ -97,10 +98,20 @@ public interface Scenes {
         lb.setText(txt);
         lb.setFont(new Font("Arial",Font.BOLD,fontSize));
         lb.setForeground(fgColor);
-          lb.setOpaque(true);
+          lb.setOpaque(false);
         
         return lb;
     }
+    default JScrollPane addScrlPane(Color col,int height,int width,JTextArea a)
+    {
+        a.setEditable(false);
+        JScrollPane jp = new JScrollPane(a);
+       
+        jp.setPreferredSize(new Dimension(width,height));
+          jp.setOpaque(false);
+        
+        return jp;
+    }
     void switchScene(int a);
-    void init();
+    void init(AppStateManager aps);
 }
