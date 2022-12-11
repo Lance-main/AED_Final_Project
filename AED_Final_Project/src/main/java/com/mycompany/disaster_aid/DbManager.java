@@ -19,6 +19,7 @@ public class DbManager {
     private String db = "";
     private String DatabaseName="appdb";
     private String UserInfo="UserInfo";
+    private String userData="UserData";
   
     DbManager()
     {
@@ -58,31 +59,103 @@ public class DbManager {
             {
                 System.out.println("Using Database "+DatabaseName);
             }
-            if(ExecuteUpdate("CREATE TABLE "+UserInfo+"(" + "Sno INT PRIMARY KEY AUTO_INCREMENT," +
-                    "UserName VARCHAR(20) NOT NULL UNIQUE," +
-                    "Password VARCHAR(20) NOT NULL) ")==true)
+            if(ExecuteUpdate("CREATE TABLE "+UserInfo+"(" + "Sno INT UNIQUE AUTO_INCREMENT," +
+                    "UserName VARCHAR(20) NOT NULL  PRIMARY KEY," +
+                    "Password VARCHAR(20) NOT NULL, "+
+                     "Email VARCHAR(80) NOT NULL, "+
+                     "Country VARCHAR(20) NOT NULL, "+
+                     "City VARCHAR(20) NOT NULL, "+
+                     "PinCode VARCHAR(20) NOT NULL) ")==true)
             {
                 System.out.println("Created the table "+UserInfo);
-                InsertUser("User1","pass1");
-                InsertUser("User2","pass2");
+
+            }
+            
+             if(ExecuteUpdate("CREATE TABLE "+userData+"(" + "Sno INT UNIQUE AUTO_INCREMENT," +
+                    "UserName VARCHAR(20) NOT NULL ," +
+                    "DonationType VARCHAR(20) NOT NULL, "+
+                    "Qty INT NOT NULL)")==true)
+            {
+                System.out.println("Created the table "+userData);
+
             }
          
         }
     }
-    public void InsertUser(String UserName,String Password)
+      public int getTotalHistory(String user_name)
+    {
+        int rows=0;
+        String SQL="select COUNT(*) from "+ userData + " WHERE UserName = '"+user_name+"'";
+        try{
+            PrepStatment = connection.prepareStatement(SQL);
+            ResSet = PrepStatment.executeQuery();
+            if(ResSet.next())
+            {
+                rows=ResSet.getInt(1);
+            }else
+            {
+                System.out.println("Error Getting Column Number ");
+            }
+        }catch(Exception e)
+        {
+            System.out.println("Error At Exectuing Querry"+e);
+        }
+        return rows;
+    }
+      public String GetDataString(int i,String UserName,String ColName)
+    {
+        String RData="";
+        String SQL="select * from "+ userData +" WHERE UserName='"+UserName+"' LIMIT "+(i)+",1";
+        try{
+            PrepStatment = connection.prepareStatement(SQL);
+            ResSet = PrepStatment.executeQuery();
+            if(ResSet.next())
+            {
+                RData=ResSet.getString(ColName);
+            }else
+            {
+                System.out.println("No Data Found ");
+            }
+        }catch(Exception e)
+        {
+            System.out.println("Error At Exectuing Querry"+e);
+            RData="No Connection";
+        }
+        return RData;
+    }
+    public void InsertUser(String UserName,String Password,String Email,String Country,String city,int pinCode)
     {
         try{
-            String Sql = "INSERT INTO "+UserInfo+"(UserName,Password) VALUES(?,?)";
+            String Sql = "INSERT INTO "+UserInfo+"(UserName,Password,Email,Country,City,PinCode) VALUES(?,?,?,?,?,?)";
             PrepStatment = connection.prepareStatement(Sql);
             PrepStatment.setString(1,UserName);
             PrepStatment.setString(2,Password);
+            PrepStatment.setString(3,Email);
+            PrepStatment.setString(4,Country);
+            PrepStatment.setString(5,city);
+            PrepStatment.setInt(6,pinCode);
+
+
             PrepStatment.execute();
         }catch (Exception e)
         {
             System.out.println("Inserting Data into Database Failed\n\n\t--"+e);
         }
     }
-    
+     public void InsertData(String UserName,String DonationType,int QTY)
+    {
+        try{
+            String Sql = "INSERT INTO "+userData+"(UserName,DonationType,Qty) VALUES(?,?,?)";
+            PrepStatment = connection.prepareStatement(Sql);
+            PrepStatment.setString(1,UserName);
+            PrepStatment.setString(2,DonationType);
+            PrepStatment.setInt(3,QTY);
+            PrepStatment.execute();
+        }catch (Exception e)
+        {
+            System.out.println("Inserting Data into Database Failed\n\n\t--"+e);
+        }
+    }
     public int Authenticate(String UserName,String Password)
     {
         try{
