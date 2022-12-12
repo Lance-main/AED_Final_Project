@@ -7,7 +7,7 @@ import java.sql.*;
 
 /**
  *
- * @author 
+ * @lance 
  */
 public class DbManager {
     private Connection connection;

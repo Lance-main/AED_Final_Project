@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author EpiCon
+ * @lance
  */
 public class DbError extends JPanel implements Scenes {
     AppWindow root;

@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JCheckBox;
 /**
  *
- * @author 
+ * @rushi 
  */
 public class HomeScene_Admin extends JPanel implements Scenes
 {

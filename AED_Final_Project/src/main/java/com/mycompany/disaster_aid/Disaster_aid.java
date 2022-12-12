@@ -6,7 +6,7 @@ package com.mycompany.disaster_aid;
 
 /**
  *
- * @author someone's name goes here~
+ * @rushi
  */
 public class Disaster_aid {
     

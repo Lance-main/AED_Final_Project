@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 /**
  *
- * @author EpiCon
+ * @lance
  */
 public class ButtonRenderer extends JButton implements  TableCellRenderer{
      //CONSTRUCTOR

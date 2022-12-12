@@ -6,7 +6,7 @@ package com.mycompany.disaster_aid;
 import java.util.ArrayList;
 /**
  *
- * @author 
+ * @lance 
  */
 
 

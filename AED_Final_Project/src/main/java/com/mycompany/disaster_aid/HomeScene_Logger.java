@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author 
+ * @ojasvi 
  */
 public class HomeScene_Logger extends JPanel implements Scenes {
          private AppWindow root;

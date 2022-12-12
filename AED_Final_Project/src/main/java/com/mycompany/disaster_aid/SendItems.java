@@ -22,7 +22,7 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 /**
  *
- * @author 
+ * @lance 
  */
 
 public class SendItems extends JPanel implements Scenes

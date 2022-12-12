@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 /**
  *
- * @author 
+ * @lance 
  */
 public class AppWindow extends JFrame{
     public AppStateManager appManager;

@@ -22,7 +22,7 @@ import java.util.regex.*;
 
 /**
  *
- * @author 
+ * @Ojasvi 
  */
 public class Register extends JPanel implements Scenes{
     private AppWindow root;
